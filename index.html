@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tanishk Saini — Machine learning research and applied projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef2f6; --panel:#ffffff; --ink:#0d2733; --muted:#51697a; --line:#d3dde5; --grid:#e0e8ee; --accent:#4a37c9; --accent-soft:#e8e5fb; --accent-ink:#ffffff; --shadow:0 1px 2px rgba(13,39,51,.06),0 10px 30px -12px rgba(13,39,51,.18);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#0b1b24; --panel:#112530; --ink:#e7eff3; --muted:#9db3bf; --line:#26414d; --grid:#12262f; --accent:#a090ff; --accent-soft:#251f52; --accent-ink:#0b1b24; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -12px rgba(0,0,0,.5);}
+}
+:root[data-theme="dark"]{--paper:#0b1b24; --panel:#112530; --ink:#e7eff3; --muted:#9db3bf; --line:#26414d; --grid:#12262f; --accent:#a090ff; --accent-soft:#251f52; --accent-ink:#0b1b24; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -12px rgba(0,0,0,.5);}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:36px 36px;background-attachment:fixed}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;line-height:1.1;margin:0}
+a{color:var(--accent)}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font:600 16px "Schibsted Grotesk",sans-serif}
+nav .brand{color:var(--ink);text-decoration:none;font-weight:800;font-size:18px}
+nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
+nav ul a{color:var(--muted);text-decoration:none}
+nav ul a:hover{color:var(--accent)}
+
+.hero{padding:44px 0 0}
+.hero h1{font-size:clamp(50px,10vw,116px);font-weight:800;letter-spacing:-.04em}
+.hero .lede{max-width:34em;font-size:clamp(21px,2.6vw,27px);line-height:1.45;margin:22px 0 0}
+.hero .where{margin:14px 0 0;color:var(--muted);font-size:18px}
+.hero .links{margin-top:26px}
+.stage{margin-top:44px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:10px 10px 4px}
+.spectrum{display:block;width:100%;height:auto}
+.spectrum .curve{fill:none;stroke:var(--accent);stroke-width:2.8;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 3s cubic-bezier(.4,0,.2,1) .2s forwards}
+.spectrum .area{fill:var(--accent);opacity:0;animation:fade 1.2s ease 2.6s forwards}
+.spectrum text{fill:var(--muted);font:12px "Schibsted Grotesk",sans-serif}
+.spectrum .axis{stroke:var(--line);stroke-width:1}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:.1}}
+@media (prefers-reduced-motion:reduce){.spectrum .curve{animation:none;stroke-dashoffset:0}.spectrum .area{animation:none;opacity:.1}html{scroll-behavior:auto}}
+
+section{padding:96px 0 0;display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px}
+.head{align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px)}
+h2{font-size:clamp(30px,4vw,40px);font-weight:800;letter-spacing:-.025em;padding-top:14px;border-top:3px solid var(--accent);display:inline-block}
+.sub{margin:12px 0 0;color:var(--muted);font-size:17px;line-height:1.5}
+
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-block;font:700 15px "Schibsted Grotesk",sans-serif;padding:9px 18px;border-radius:99px;background:var(--accent);color:var(--accent-ink);text-decoration:none;border:1.5px solid var(--accent);transition:background .15s,color .15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.alt{background:transparent;color:var(--accent)}
+.btn.alt:hover{background:var(--accent-soft);filter:none}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:26px}
+.kind{display:block;font:700 14px "Schibsted Grotesk",sans-serif;color:var(--accent);margin-bottom:10px}
+.card h3{font-size:clamp(22px,3vw,28px);font-weight:700;letter-spacing:-.01em}
+.card p{margin:10px 0 0;color:var(--muted);font-size:18px;max-width:40em}
+.card .venue{margin:8px 0 0;font-style:italic;color:var(--ink)}
+.feature{border-left:6px solid var(--accent)}
+.tags{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tags li{font:500 13px "Schibsted Grotesk",sans-serif;background:var(--accent-soft);padding:3px 11px;border-radius:99px}
+
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.projects .card{display:flex;flex-direction:column}
+.projects .card p{flex:1}
+
+.small{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.row h3{font-size:20px;font-weight:700}
+.row p{margin:4px 0 0;color:var(--muted);font-size:17px;line-height:1.5}
+.row .links{margin:0;justify-content:flex-end}
+.row .tags{margin-top:10px}
+
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.skills .card{padding:22px}
+.skills h3{font-size:18px;font-weight:700}
+.skills .tags{margin-top:14px}
+
+.path{border-left:2px solid var(--line);margin-left:6px;padding-left:26px}
+.path div{position:relative;margin-bottom:28px}
+.path div::before{content:"";position:absolute;left:-34px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+.path h3{font-size:21px;font-weight:700}
+.path span{color:var(--muted);font-size:17px}
+
+footer{margin-top:96px;padding:36px 0 56px;border-top:1px solid var(--line);color:var(--muted);font-size:17px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+footer .links{margin:0}
+
+@media (max-width:860px){
+  section{grid-template-columns:1fr;gap:22px;padding-top:72px}
+  .head{position:static}
+  .projects,.skills{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .row .links{justify-content:flex-start;margin-top:8px}
+  body{font-size:18px}
+  nav ul{gap:14px}
+}
+@media (max-width:520px){nav ul li:nth-child(n+3){display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#top">Tanishk Saini</a>
+    <ul><li><a href="#research">Research</a></li><li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li><li><a href="#path">Path</a></li></ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <h1>Tanishk Saini</h1>
+    <p class="lede">I build machine learning systems, from self-supervised models for infrared spectra to LLM-powered apps that people can run and use.</p>
+    <p class="where">Research Intern at IKSHMA, IIT Mandi. B.Tech student in Computer Science at NIT Hamirpur.</p>
+    <div class="links">
+      <a class="btn" href="#projects">See my projects</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/tanishk-saini-154466295/">LinkedIn</a>
+      <a class="btn alt" href="https://github.com/tnshkAI?tab=repositories">GitHub</a>
+    </div>
+    <div class="stage">
+      <svg class="spectrum" viewBox="0 0 1000 230" role="img" aria-label="Illustrative infrared spectrum drawn as a line with several absorption peaks">
+        <line class="axis" x1="0" y1="200" x2="1000" y2="200"/>
+        <path class="area" d="M0,186 C60,184 100,180 140,176 S200,150 230,100 S260,40 290,100 S330,180 370,182 S430,170 470,176 S520,120 545,70 S575,150 600,170 S660,184 700,178 S740,110 765,60 S800,20 825,70 S860,170 900,180 S960,186 1000,184 L1000,200 L0,200 Z"/>
+        <path class="curve" pathLength="1" d="M0,186 C60,184 100,180 140,176 S200,150 230,100 S260,40 290,100 S330,180 370,182 S430,170 470,176 S520,120 545,70 S575,150 600,170 S660,184 700,178 S740,110 765,60 S800,20 825,70 S860,170 900,180 S960,186 1000,184"/>
+        <text x="10" y="220">4000</text><text x="320" y="220">3000</text><text x="640" y="220">2000</text><text x="930" y="220">1000 cm⁻¹</text>
+      </svg>
+    </div>
+  </header>
+
+  <section id="research" aria-labelledby="h-research">
+    <div class="head"><h2 id="h-research">Research</h2><p class="sub">Published work on infrared spectra.</p></div>
+    <div>
+      <div class="card feature">
+        <span class="kind">Published paper</span>
+        <h3>A3M-CIR: a foundational model for IR spectra</h3>
+        <div class="venue">Accepted in Analytical Chemistry (ACS Publications), 24 August 2026. Third of four authors.</div>
+        <p>A self-supervised foundation model for infrared spectra.</p>
+        <div class="links">
+          <a class="btn" href="https://doi.org/10.1021/acs.analchem.6c01881">Read the paper</a>
+          <a class="btn alt" href="https://github.com/Ak7210/A3M-CIR">Code on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="h-projects">
+    <div class="head"><h2 id="h-projects">Major projects</h2><p class="sub">Full applications and systems I designed and built.</p></div>
+    <div class="projects">
+      <article class="card">
+        <span class="kind">Semantic search</span>
+        <h3>IR-Spectral-Semantic-Search</h3>
+        <p>A transformer-based search system for infrared spectra, trained with contrastive learning and adversarial spectral masking. It produces 256-dimensional embeddings and is evaluated with Recall@K, Precision@K and mAP.</p>
+        <ul class="tags"><li>Transformers</li><li>Contrastive learning</li><li>Self-supervised</li></ul>
+        <div class="links"><a class="btn alt" href="https://github.com/tnshkAI/IR-Spectral-Semantic-Search">GitHub</a></div>
+      </article>
+      <article class="card">
+        <span class="kind">LLM app</span>
+        <h3>Web Insight AI</h3>
+        <p>A website summarizer and company brochure generator built with Streamlit. A multi-step pipeline picks relevant links through JSON output and streams tokens as it writes. It works with Ollama, Groq and OpenAI-compatible APIs.</p>
+        <ul class="tags"><li>Streamlit</li><li>LLMs</li><li>Ollama</li><li>Groq</li></ul>
+        <div class="links">
+          <a class="btn" href="https://web-insight-ai-llm-powered-website-summarizer-brochure-generat.streamlit.app/">Live demo</a>
+          <a class="btn alt" href="https://github.com/tnshkAI/Web-Insight-AI-LLM-Powered-Website-Summarizer-Brochure-Generator">GitHub</a>
+        </div>
+      </article>
+      <article class="card">
+        <span class="kind">Local LLM</span>
+        <h3>Sarweshwar</h3>
+        <p>A simple, free interface for a local open-source LLM. It answers most everyday questions and runs without paid APIs.</p>
+        <ul class="tags"><li>Local LLM</li><li>Open source</li></ul>
+        <div class="links"><a class="btn alt" href="https://github.com/tnshkAI/Sarweshwar-A-Ready-to-use-Local-LLM">GitHub</a></div>
+      </article>
+      <article class="card">
+        <span class="kind">Computer vision</span>
+        <h3>Attendify</h3>
+        <p>An attendance tracking system that marks attendance directly from a photo of the class.</p>
+        <ul class="tags"><li>Computer vision</li><li>Attendance system</li></ul>
+        <div class="links"><a class="btn alt" href="https://github.com/tnshkAI/Attendify">GitHub</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="small" aria-labelledby="h-small">
+    <div class="head"><h2 id="h-small">Smaller projects</h2><p class="sub">Focused builds that sharpened my fundamentals.</p></div>
+    <div class="small">
+      <div class="row">
+        <div><h3>SMS Spam Classifier</h3><p>A machine learning web app that classifies a text message as spam or genuine, deployed live on Streamlit.</p><ul class="tags"><li>NLP</li><li>Classification</li><li>Streamlit</li></ul></div>
+        <div class="links"><a class="btn" href="https://sms-spam-classifiergit-delf66m48xtoabehysr5nv.streamlit.app/">Live app</a><a class="btn alt" href="https://github.com/tnshkAI/SMS-Spam-Classifier">GitHub</a></div>
+      </div>
+      <div class="row">
+        <div><h3>FaceMask Detection Model</h3><p>A computer vision model that detects whether the person in front of the camera is wearing a face mask.</p><ul class="tags"><li>Computer vision</li><li>Detection</li></ul></div>
+        <div class="links"><a class="btn alt" href="https://github.com/tnshkAI/FaceMask-Detection-Model">GitHub</a></div>
+      </div>
+      <div class="row">
+        <div><h3>Yes Bank Closing Price Prediction</h3><p>A predictive model that estimates the closing price of Yes Bank stock from historical market data.</p><ul class="tags"><li>Regression</li><li>Time series</li></ul></div>
+        <div class="links"><a class="btn alt" href="https://github.com/tnshkAI/Yes-Bank-Closing-Price-Prediction-Model">GitHub</a></div>
+      </div>
+      <div class="row">
+        <div><h3>FastAPI To-Do App</h3><p>A lightweight to-do application with a FastAPI backend, built to practice clean API design.</p><ul class="tags"><li>FastAPI</li><li>Backend</li></ul></div>
+        <div class="links"><a class="btn alt" href="https://github.com/tnshkAI/FastAPI-to-do-app">GitHub</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="h-skills">
+    <div class="head"><h2 id="h-skills">Skills</h2><p class="sub">What I use to build and publish.</p></div>
+    <div class="skills">
+      <div class="card"><h3>Research models</h3><ul class="tags"><li>Transformers</li><li>Self-supervised learning</li><li>Contrastive learning</li><li>Semantic search</li><li>Spectral data</li></ul></div>
+      <div class="card"><h3>LLM applications</h3><ul class="tags"><li>Streamlit</li><li>Ollama</li><li>Groq</li><li>OpenAI-compatible APIs</li><li>Token streaming</li></ul></div>
+      <div class="card"><h3>Applied machine learning</h3><ul class="tags"><li>Classification</li><li>Price prediction</li><li>Image-based detection</li><li>Model evaluation</li></ul></div>
+      <div class="card"><h3>Backend and research practice</h3><ul class="tags"><li>FastAPI</li><li>Training pipelines</li><li>Peer review responses</li><li>Paper writing</li></ul></div>
+    </div>
+  </section>
+
+  <section id="path" aria-labelledby="h-path">
+    <div class="head"><h2 id="h-path">Path</h2><p class="sub">Where I work and study.</p></div>
+    <div class="path">
+      <div><h3>Research Intern, IKSHMA, IIT Mandi</h3><span>May 2025 to present</span></div>
+      <div><h3>B.Tech in Computer Science and Engineering, NIT Hamirpur</h3><span>2023 to 2027</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Let's talk about research or projects.</span>
+    <div class="links">
+      <a class="btn" href="https://www.linkedin.com/in/tanishk-saini-154466295/">LinkedIn</a>
+      <a class="btn alt" href="mailto:sainitanishk5@gmail.com">sainitanishk5@gmail.com</a>
+      <a class="btn alt" href="https://github.com/tnshkAI?tab=repositories">GitHub</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
